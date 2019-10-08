@@ -24,16 +24,19 @@
     </div>
   </nav>
   <List></List>
+  <Graph></Graph>
 </body>
 </template>
 
 <script>
 import List from "./components/List.vue";
+import Graph from "./components/Graph.vue";
 
 export default {
   name: "app",
   components: {
-    List
+    List,
+    Graph
   }
 }; 
 </script>

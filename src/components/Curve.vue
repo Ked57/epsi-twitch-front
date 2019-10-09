@@ -2,6 +2,16 @@
   <div id="app" class="container">
     <h1 class="title is-1 has-text-centered titre">View Curve Evolution</h1>
     <canvas id="myChart" :labels="labels" :values="votes"></canvas>
+    <div class="control pad-top pad-left-right">
+        <div class="select" v-for="n in numberDropdown" v-bind:key="n">
+            <select>
+                <option>Select dropdown</option>
+                <option>With options</option>
+            </select>
+        </div>
+        <a class="button is-primary" @click="addDropdown">+</a>
+        <button class="button is-primary">Submit</button>
+    </div>
   </div>
 </template>
 <script>
@@ -12,9 +22,13 @@ export default {
     return{
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         votes: [12, 19, 3, 5, 2, 15],
+        numberDropdown: 1,
     }
   },
     methods:{
+        addDropdown: function() {
+           this.numberDropdown += 1 
+        },
 
     },
      mounted: function() {
@@ -67,7 +81,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .titre{
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+.pad-top{
+    padding-top: 20px;
+}
+.pad-left-right{
+    padding-left: 25px;
+    padding-right: 25px;
 }
 </style>

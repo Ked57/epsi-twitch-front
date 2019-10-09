@@ -23,8 +23,8 @@
       </div>
     </div>
   </nav>
-  <List></List>
   <Graph></Graph>
+  <List></List>
 </body>
 </template>
 

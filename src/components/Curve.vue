@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container">
-    <h1 class="title is-1 has-text-centered titre">Games View Number (Today)</h1>
+    <h1 class="title is-1 has-text-centered titre">View Curve Evolution</h1>
     <canvas id="myChart" :labels="labels" :values="votes"></canvas>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
      mounted: function() {
         var ctx = document.getElementById('myChart').getContext('2d')
         new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: this.labels,
                 datasets: [

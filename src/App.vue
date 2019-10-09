@@ -20,18 +20,20 @@
 
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
-        <router-link class="navbar-item has-text-white" to="/">Graph</router-link>
-        <router-link class="navbar-item has-text-white" to="/table">Table</router-link>
+        <router-link class="navbar-item has-text-white" to="/">Graph Chart</router-link>
+        <router-link class="navbar-item has-text-white" to="/curve">Curve Chart</router-link>
+        <router-link class="navbar-item has-text-white" to="/table">Table</router-link>   
       </div>
     </div>
   </nav>
-  <aside class="menu" v-show="hidden">
-  <p class="menu-label">
+  <aside class="menu background-color" v-show="hidden">
+  <p class="menu-label has-text-centered">
     General
   </p>
   <ul class="menu-list">
-    <li><router-link to="/">Graph</router-link></li>
-    <li><router-link to="/table">Table</router-link></li>
+    <li class="has-text-centered"><router-link to="/">Graph Chart</router-link></li>
+    <li class="has-text-centered"><router-link to="/table">Curve Chart</router-link></li>
+    <li class="has-text-centered"><router-link to="/curve">Table</router-link></li>
   </ul>
 </aside>
   <router-view></router-view>

@@ -1,12 +1,12 @@
 <template>
-<div class="container is-centered app">
-  <br>
-  <h1 class="title is-text-centered ">Liste des jeux</h1>
-  <table class="table is-bordered is-striped is-truncated">
+<div class="container">
+  <section class="section">
+  <h1 class="title has-text-centered ">Game List</h1>
+  <table class="table is-bordered is-striped is-truncated ">
 		<thead>
 			<tr>
-				<th>Nom du jeu</th>
-        <th>Nombre de vues</th>
+				<th>Game Name</th>
+        <th>View Number</th>
         <th>Bonus</th>
 			</tr>
 		</thead>
@@ -18,6 +18,7 @@
 			</tr>	
 		</tbody>
 	</table>
+  </section>
   </div>
 </template>
 

@@ -9,7 +9,8 @@
         class="navbar-burger burger"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        data-target="navbarMenu"
+        @click="show"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -17,26 +18,46 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item has-text-white">Home</a>
+        <router-link class="navbar-item has-text-white" to="/">Graph</router-link>
+        <router-link class="navbar-item has-text-white" to="/table">Table</router-link>
       </div>
     </div>
   </nav>
-  <Graph></Graph>
-  <List></List>
+  <aside class="menu" v-show="hidden">
+  <p class="menu-label">
+    General
+  </p>
+  <ul class="menu-list">
+    <li><router-link to="/">Graph</router-link></li>
+    <li><router-link to="/table">Table</router-link></li>
+  </ul>
+</aside>
+  <router-view></router-view>
 </body>
 </template>
 
 <script>
-import List from "./components/List.vue";
-import Graph from "./components/Graph.vue";
 
 export default {
   name: "app",
   components: {
-    List,
-    Graph
+
+  },
+  data(){
+    return{
+      hidden: false
+    }
+  },
+  methods: {
+    show: function() {
+      if(this.hidden){
+        this.hidden =false
+      }else{
+        this.hidden =true
+      }  
+    }
   }
 }; 
 </script>

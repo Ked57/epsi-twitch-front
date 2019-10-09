@@ -1,6 +1,7 @@
 <template>
   <div id  ="app" class="container">
-      <canvas id="myChart" width="200" height="200" :labels="labels" :values="votes"></canvas>
+    <h1 class="title is-1 has-text-centered titre">Games View Number (Today)</h1>
+    <canvas id="myChart" :labels="labels" :values="votes"></canvas>
   </div>
 </template>
 <script>
@@ -13,6 +14,9 @@ export default {
         votes: [12, 19, 3, 5, 2, 15],
     }
   },
+    methods:{
+
+    },
      mounted: function() {
         var ctx = document.getElementById('myChart').getContext('2d')
         new Chart(ctx, {
@@ -62,4 +66,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.titre{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 </style>

@@ -4,13 +4,15 @@
     <canvas id="myChart"></canvas>
     <div class="control pad-top">
       <div class="container">
-  <label class="label">numbers</label>
-  <p class="control">
-    <select multiple  name="games" v-model="selectedGames" options="games">
-    </select>
-  </p>
-</div>
-      <button class="button is-primary" @click="createChart">Submit</button>
+        <SelectDropdown
+          :options="gamesList"
+          :selected="selectedGames"
+          @change="onChange($event)"
+          label="Select"
+          placeholder="games"
+          class="nav-item"
+        ></SelectDropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +21,7 @@ import Chart from "chart.js";
 import { API_URL, GAMES_ROUTE, GAMES_LIST_ROUTE } from "../types";
 import { fetchGames, fetchGamesList } from "../api";
 import { computeGamesData } from "../compute";
+import SelectDropdown from "@/components/SelectDropdown.vue";
 
 export default {
   data() {
@@ -26,32 +29,42 @@ export default {
       games: [],
       times: [],
       gamesList: [],
-      selectedGames: []
+      selectedGames: [],
+      chart: undefined
     };
   },
+  components: { SelectDropdown },
   methods: {
+    getRandomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    },
     async createChart() {
+      console.log("createChart");
       const result = await fetchGames(`${API_URL}${GAMES_ROUTE}`, {
-        date: "2019-10-10T09:33:00.000Z",
+        date: new Date().toISOString(),
         scale: "h",
-        games: "Overwatch"
+        games: this.selectedGames
       });
       const { games, times } = computeGamesData(result);
       this.games = games;
       this.times = Array.from(times);
       const datasets = this.games.map(game => ({
         label: game.name,
-        data: game.points
+        data: game.points,
+        borderColor: this.getRandomColor(),
+        fill: false
       }));
       const ctx = document.getElementById("myChart").getContext("2d");
-      new Chart(ctx, {
+      this.chart = new Chart(ctx, {
         type: "line",
         data: {
           labels: this.times,
-          datasets,
-          backgroundColor: ["rgba(255, 99, 132, 0.6)"],
-          borderColor: ["rgba(255,99,132,1)"],
-          borderWidth: 1
+          datasets
         },
         options: {
           scales: {
@@ -65,11 +78,14 @@ export default {
           }
         }
       });
+    },
+    onChange(changed) {
+      this.createChart();
     }
   },
   async mounted() {
-      const result = await fetchGamesList(`${API_URL}${GAMES_LIST_ROUTE}`)
-      this.gamesList = result.map(game => game.value)
+    const result = await fetchGamesList(`${API_URL}${GAMES_LIST_ROUTE}`);
+    this.gamesList = result.map(game => game.value);
   }
 };
 </script>

@@ -5,8 +5,7 @@
     </div>
 
     <div class="navbar-start">
-      <router-link class="navbar-item" to="/">Graph Chart</router-link>
-      <router-link class="navbar-item" to="/curve">Curve Chart</router-link>
+      <router-link class="navbar-item" to="/">Curve Chart</router-link>
     </div>
   </nav>
 </template>
